@@ -1,6 +1,5 @@
-import 'package:easy_book_test/core/app_colors.dart';
-import 'package:easy_book_test/core/app_const.dart';
-
+import '/core/app_colors.dart';
+import '/core/app_const.dart';
 
 import 'package:flutter/material.dart';
 
