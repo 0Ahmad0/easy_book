@@ -1,0 +1,26 @@
+import 'package:easy_book_test/core/app_colors.dart';
+import 'package:easy_book_test/core/app_const.dart';
+
+
+import 'package:flutter/material.dart';
+
+import 'home_page.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: AppColors.primaryColor,
+          fontFamily: AppConst.fontFamily,
+        ),
+        home: const HomePage());
+  }
+}
