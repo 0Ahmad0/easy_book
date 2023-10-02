@@ -16,8 +16,9 @@ class AppTextFormFiled extends StatefulWidget {
         this.onTap,
         this.autofocus = false,
         this.readOnly = false,
-        this.maxline = 1,
-        this.minline = 1})
+        this.maxLine = 1,
+        this.minLine = 1,
+        this.maxLength})
       : super(key: key);
 
   final TextInputAction textInputAction;
@@ -32,8 +33,9 @@ class AppTextFormFiled extends StatefulWidget {
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
-  final int? maxline;
-  final int? minline;
+  final int? maxLine;
+  final int? minLine;
+  final int? maxLength;
 
   @override
   State<AppTextFormFiled> createState() => _TextFiledAppState();
@@ -49,8 +51,9 @@ class _TextFiledAppState extends State<AppTextFormFiled> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: widget.maxline,
-      minLines: widget.minline,
+      maxLength: widget.maxLength,
+      maxLines: widget.maxLine,
+      minLines: widget.minLine,
       readOnly: widget.readOnly,
       autofocus: widget.autofocus,
       validator: widget.validator ??
@@ -67,7 +70,9 @@ class _TextFiledAppState extends State<AppTextFormFiled> {
 
       decoration: InputDecoration(
           border:  OutlineInputBorder(
-              borderRadius: BorderRadius.circular(100.0)
+              borderRadius: BorderRadius.circular(
+                  widget.maxLength == null ? 100.0:12
+              )
           ),
 
           prefixIcon: widget.iconData == null

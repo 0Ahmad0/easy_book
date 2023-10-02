@@ -2,17 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_journey/constants/app_assets.dart';
 import 'package:patient_journey/constants/app_colors.dart';
+import 'package:patient_journey/screens/appointments_screen.dart';
+import 'package:patient_journey/screens/communication_screen.dart';
+import 'package:patient_journey/screens/medical_files_screen.dart';
+import 'package:patient_journey/screens/medical_reviews_screen.dart';
+import 'package:patient_journey/screens/notification_screen.dart';
+import 'package:patient_journey/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        title: Text('Home'),
+        leading: IconButton(
+          icon: const Icon(Icons.notifications),
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>NotificationScreen()));
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProfileScreen()));
+            },
+          )
+        ],
+      ),
       body: Column(
         children: [
           const SafeArea(child: SizedBox.shrink()),
-          Expanded(child: Image.asset(AppAssets.doctorsIMG)),
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Image.asset(AppAssets.doctorsIMG),
+          )),
           Expanded(
               flex: 2,
               child: Padding(
@@ -29,19 +59,33 @@ class HomeScreen extends StatelessWidget {
                           size: 40.0,
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => AppointmentsScreen(),
+                          ),
+                        );
+                      },
                     ),
                     HomeItem(
-                      text: 'Notifications',
+                      text: 'Medical Reviews',
                       child: CircleAvatar(
                         radius: 30.0,
                         backgroundColor: AppColors.white,
                         child: Icon(
-                          Icons.notifications,
+                          Icons.medical_services,
                           size: 40.0,
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => MedicalReviewsScreen(),
+                          ),
+                        );
+                      },
                     ),
                     HomeItem(
                       text: 'Communication',
@@ -55,7 +99,12 @@ class HomeScreen extends StatelessWidget {
                           color: AppColors.primary,
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => CommunicationScreen()));
+                      },
                     ),
                     HomeItem(
                       text: 'Mediacal file',
@@ -63,13 +112,15 @@ class HomeScreen extends StatelessWidget {
                         radius: 30.0,
                         backgroundColor: AppColors.white,
                         child: SvgPicture.asset(
-                          AppAssets.MedicalIMG,
+                          AppAssets.medicalIMG,
                           width: 40.0,
                           height: 40.0,
                           color: AppColors.primary,
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>MedicalFilesScreen()));
+                      },
                     ),
                   ],
                 ),

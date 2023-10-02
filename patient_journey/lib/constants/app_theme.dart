@@ -7,5 +7,8 @@ class AppTheme{
     primarySwatch: AppColors.primary,
   ).copyWith(
     scaffoldBackgroundColor: AppColors.lightPrimary,
+    appBarTheme: AppBarTheme(
+      centerTitle: true
+    )
   );
 }
