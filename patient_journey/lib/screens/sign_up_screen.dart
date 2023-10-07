@@ -202,12 +202,15 @@ class _SignupScreenState extends State<SignupScreen> {
                                         value: e.toString(),
                                       ))
                                   .toList(),
-                              onChanged: (value) {}),
+                              onChanged: (value) {
+                                userTypeController.text = value!;
+                              }),
                           const SizedBox(
                             height: 20.0,
                           ),
                           AppButton(
                               onPressed: () {
+                                print(userTypeController.value.text);
                                 if (_formKey.currentState!.validate()) {
                                   authController.signUp(context,
                                       firstName: firstNameController.value.text,
@@ -217,7 +220,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                       email: emailController.text,
                                       password: passwordController.value.text,
                                       phoneNumber: phoneController.value.text,
-                                      photoUrl: '',
+                                      photoUrl: 'https://',
                                       typeUser: userTypeController.value.text);
                                   // Navigator.pushReplacement(context, MaterialPageRoute(
                                   //     builder: (ctx)=>HomeScreen()));
